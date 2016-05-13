@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+
+<html class="no-js" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>VacationFinder</title>
+    <meta content="" name="description"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="/css/bootstrap.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/normalize.css">
+
+    <link rel="stylesheet" href="/css/ion.rangeSlider.css"/>
+    <link rel="stylesheet" href="/css/ion.rangeSlider.skinFlat.css"/>
+    <link rel="stylesheet" href="/css/awesomplete.css" />
+    <link href="/css/global.css" rel="stylesheet"/>
+    <!-- endbuild -->
+</head>
+<body>
+<!--[if lt IE 10]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+<div class="container container-fixed fill" id="mountainBackground">
+
+    <form role="form" id="theform" action="#" th:action="@{/submit}" th:object="${query}" method="post">
+        <div class="container-fluid fix">
+            <div class="carousel slide " data-interval="false" id="myCarousel">
+
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+
+                    <!-- SLIDE 1 -->
+                    <div class="item active">
+                        <div class="container-fluid fix" id="moveDown">
+
+                            <div id="cityStateForms">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="text" id="input1" class="form-control" th:field="*{city}"
+                                               placeholder="city..."/>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <input type="text" id="input2" class="form-control" th:field="*{state}"
+                                               placeholder="state..."/>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-sm-offset-9 col-sm-3 slide1Buttons">
+                                    <button type="button" id="nextButton1"
+                                            class="btn btn-primary btn-lg btn-block hvr-underline-from-center submitSlideButton"
+                                            onclick="javascript:next();">
+                                        Next
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 2 -->
+                    <div class="item" id="slide2">
+                        <div class="container-fluid fix">
+                            <div class="row">
+                                <div class="col-sm-offset-3 col-sm-6">
+                                    <h1 class="headerFont">radius from destination?</h1>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="inputStyle col-sm-offset-3 col-sm-6">
+                                    <input type="text" id="distanceSlider" name="distanceAmount"
+                                           th:field="*{distance}"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-offset-3 col-sm-6">
+                                    <h1 class="headerFont">spending?</h1>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="inputStyle col-sm-offset-3 col-sm-6">
+                                    <input type="text" id="budgetSlider" name="dollarAmount"
+                                           th:field="*{budget}"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-offset-3 col-sm-6">
+                                    <h1 class="headerFont">taking a family?</h1>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-offset-7 col-sm-2 switch-field" id="padForToggleButton">
+                                    <div class="switch_left">
+                                        <input type="radio" id="switch_left" name="switch_2" value="yes"
+                                               th:field="*{isFamily}" th:value="${isFamily = true}" checked/>
+                                        <label for="switch_left">Yes</label>
+                                    </div>
+                                    <div class="switch_right">
+                                        <input type="radio" id="switch_right" name="switch_2" value="yes"
+                                               th:field="*{isFamily}" th:value="${isFamily = false}" checked/>
+                                        <label for="switch_right">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class=" col-sm-offset-3 col-sm-3 slide1Buttons">
+                                    <button type="button"
+                                            class="btn btn-primary btn-lg btn-block hvr-underline-from-center submitSlideButton"
+                                            onclick="javascript:prev();">
+                                        Previous
+                                    </button>
+                                </div>
+
+                                <div class="col-sm-3 slide1Buttons">
+                                    <button type="button"
+                                            class="btn btn-primary btn-lg btn-block hvr-underline-from-center submitSlideButton"
+                                            onclick="javascript:next();">
+                                        Next
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 3 -->
+                    <div class="item">
+                        <div class="container-fluid fix">
+
+                            <div class="row">
+                                <h1 class="headerFont">I want to see...</h1>
+                                <div class="col-md-15 col-md-3" id="pointsOfInterest">
+                                    <h1 class="headerFont">Points of Interest</h1>
+                                    <hr class="fancy-line">
+                                    <!--107 Landmarks-->
+                                    <!--110 Historic-->
+                                    <!--112 Natural-->
+                                    <!--113 Beaches-->
+                                    <!--118 Parks-->
+                                    <!--119 Natural Parks-->
+                                    <!--311 Museums-->
+
+                                    <div th:each="category : ${section_poi}">
+                                        <input type="checkbox" th:field="*{checkedPOI}" th:value="${category.id}" th:name="checkbox-option" th:id="'checkbox-' + ${category.name}" class="hide-checkbox"/>
+                                        <label th:text="${category.name}" th:for="'checkbox-' + ${category.name}">static text</label>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-15 col-md-3" id="fun">
+                                    <h1 class="headerFont">Fun</h1>
+                                    <hr>
+                                    <!--319 Amusement Parks-->
+                                    <!--371 Zoos-->
+                                    <!--387 Outdoors-->
+                                    <!--403 Snow Sports-->
+                                    <!--408 Watersport-->
+
+                                    <div th:each="category : ${section_fun}">
+                                        <input type="checkbox" th:field="*{checkedFun}" th:value="${category.id}" th:name="checkbox-option" th:id="'checkbox-' + ${category.name}" class="hide-checkbox"/>
+                                        <label th:text="${category.name}" th:for="'checkbox-' + ${category.name}">static text</label>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-15 col-md-3" id="social">
+                                    <h1 class="headerFont">Social</h1>
+                                    <hr>
+                                    <!--308 Social-->
+                                    <!--// Filter below when family == yes-->
+                                    <!--312 Bars-->
+                                    <!--316 Wine Bars-->
+
+                                    <div th:each="category : ${section_social}">
+                                        <input type="checkbox" th:field="*{checkedSocial}" th:value="${category.id}" name="checkbox-option" th:id="'checkbox-' + ${category.name}" class="hide-checkbox"/>
+                                        <label th:text="${category.name}" th:for="'checkbox-' + ${category.name}">static text</label>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-15 col-md-3" id="entertainment">
+                                    <h1 class="headerFont">Entertainment</h1>
+                                    <hr>
+                                    <!--317 Entertainment-->
+                                    <!--332 Movie theaters-->
+                                    <!--// Filter below when family == yes-->
+                                    <!--324 Casinos-->
+                                    <!--334 Night clubs-->
+                                    <!--319 Adult Entertainment-->
+
+                                    <div th:each="category : ${section_entertainment}">
+                                        <input type="checkbox" th:field="*{checkedEntertainment}" th:value="${category.id}" name="checkbox-option" th:id="'checkbox-' + ${category.name}" class="hide-checkbox"/>
+                                        <label th:text="${category.name}" th:for="'checkbox-' + ${category.name}">static text</label>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-15 col-md-3" id="misc">
+                                    <h1 class="headerFont">Misc.</h1>
+                                    <hr>
+                                    <!--149 Food-->
+                                    <!--347 Restaurants-->
+                                    <!--425 Airports-->
+                                    <!--432 Lodging-->
+
+                                    <div th:each="category : ${section_misc}">
+                                        <input type="checkbox" th:field="*{checkedMisc}" th:value="${category.id}" name="checkbox-option" th:id="'checkbox-' + ${category.name}" class="hide-checkbox"/>
+                                        <label th:text="${category.name}" th:for="'checkbox-' + ${category.name}">static text</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="moveButtonsDown">
+                                <div class="col-sm-offset-3 col-sm-3">
+                                    <button type="button"
+                                            class="btn btn-primary btn-lg btn-block hvr-underline-from-center submitSlideButton"
+                                            onclick="javascript:prev();">
+                                        Previous
+                                    </button>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <button type="button"
+                                            class="btn btn-primary btn-lg btn-block hvr-underline-from-center submitSlideButton"
+                                            onclick="javascript:done();">
+                                        Search!
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- build:js scripts/main.js -->
+            <script src="/js/jquery.js"></script>
+            <script src="/js/bootstrap.js"></script>
+            <script src="/js/ion.rangeSlider.min.js"></script>
+            <script src="/js/awesomplete.min.js"></script>
+            <script src="/js/main.js"></script>
+
+            <!-- endbuild -->
+        </div>
+    </form>
+
+
+
+</div>
+
+<!--LOGO-->
+<img src="/images/D3Vacation_Logo.png" alt="logo" id="logoStyle">
+
+
+</body>
+</html>

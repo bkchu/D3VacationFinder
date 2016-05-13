@@ -1,0 +1,104 @@
+/**********table font*********/
+table tr td, table tr th {
+    color: #ffffff;
+}
+
+/*******table styling*******/
+.oTr {
+    width: 95%;
+    display: inline-table;
+    table-layout: fixed;
+}
+
+.oTable {
+    height: 600px;
+    width: 95%;
+    /*// <-- Select the height of the table*/
+    /*display: -moz-groupbox;    // Firefox Bad Effect*/
+}
+
+.oTbody {
+    overflow-y: scroll;
+    height: inherit;
+    /*//  <-- Select the height of the body*/
+    width: 95%;
+    position: absolute;
+}
+
+.oTable .oTbody .oTr:hover .oTd {
+    background: rgb(255, 255, 255);
+    color: #C8293F;
+}
+
+.oTbody .targetRow:hover, .oTbody .targetRow .oTd:hover {
+    cursor: pointer;
+}
+
+/************map border***********/
+#map {
+    border: 2px solid #ffffff;
+}
+
+/**************Scrollbar styling************/
+/* Turn on custom 8px wide scrollbar */
+::-webkit-scrollbar {
+    width: 8px; /* 1px wider than Lion. */
+    /* This is more usable for users trying to click it. */
+    background-color: rgba(0, 0, 0, 0);
+    -webkit-border-radius: 100px;
+}
+
+/* hover effect for both scrollbar area, and scrollbar 'thumb' */
+::-webkit-scrollbar:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+::-webkit-scrollbar-thumb:vertical {
+    /* This is the EXACT color of Mac OS scrollbars.
+       Yes, I pulled out digital color meter */
+    background: rgba(255, 255, 255, 0.5);
+    -webkit-border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:vertical:active {
+    background: rgba(255, 255, 255, 0.71); /* Some darker color when you click it */
+    -webkit-border-radius: 100px;
+}
+
+/****INFO BOX****/
+#infobox {
+    width: 280px;
+    margin-top: 8px;
+    background: rgba(255, 255, 255, 1);
+    color: #C8293F;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    text-shadow: 0 -1px #FFFFFF;
+}
+
+#infobox-close:hover {
+    cursor: pointer;
+}
+
+.infoBox > img {
+    display: none;
+}
+
+.panel-body > a {
+    color: #C8293F;
+}
+
+
+.panel-heading {
+    font-size: 150%;
+    font-weight: 700;
+    background-color: rgba(240, 240, 240, 1) !important;
+}
+
+.panel-body {
+    font-size: 125%;
+}

@@ -1,0 +1,13 @@
+.DS_Store
+.idea/
+*/.idea/
+*.iws
+*/*/target/classes/*.class
+*/*.iml
+<<<<<<< HEAD
+*.iml
+target/
+||||||| merged common ancestors
+=======
+spring-petclinic/
+>>>>>>> brandon

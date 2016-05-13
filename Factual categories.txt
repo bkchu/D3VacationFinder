@@ -1,0 +1,40 @@
+categories
+
+1. Points of Interest
+107 Landmarks
+110 Historic
+112 Natural
+113 Beaches
+118 Parks
+119 Natural Parks
+311 Museums
+
+2. Fun
+319 Amusement Parks
+371 Zoos
+387 Outdoors
+403 Snow Sports
+408 Watersport
+
+3. Social
+308 Social
+// Filter below when family == yes
+312 Bars
+316 Wine Bars
+
+4. Entertainment
+317 Entertainment
+332 Movie theaters
+// Filter below when family == yes
+324 Casinos
+334 Night clubs
+318 Adult Entertainment
+
+5. Misc
+149 Food
+347 Restaurants
+425 Airports
+432 Lodging
+
+
+// Exclude
